@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 app.get("/user/:id", async (req, res) => {
   const id = req.params.id;
 
-  const user = await User.findById(id, "-password");
+  const user = await User.findById(id);
 
   if (!user) {
     return res.status(404).json({

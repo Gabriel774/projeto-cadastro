@@ -17,6 +17,14 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("/auth/updatePassword", (req, res) => {
+  const {email, password} = req.body
+  const userExists = await User.updateOne({
+    email: email
+  }, {email:email, password: password} )
+  res.send("ok")
+});
+
 app.get("/user/:id", async (req, res) => {
   const id = req.params.id;
 

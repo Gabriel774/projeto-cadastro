@@ -17,26 +17,6 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/auth/updatePassword", (req, res) => {
-  const {email, password} = req.body
-  const userExists = await User.updateOne({
-    email: email
-  }, {email:email, password: password} )
-  res.send("ok")
-});
-
-app.get("/user/:id", async (req, res) => {
-  const id = req.params.id;
-
-  const user = await User.findById(id);
-
-  if (!user) {
-    return res.status(404).json({
-      msg: "Usuário não encontrado!"
-    });
-  }
-});
-
 app.post("/auth/register", async (req, res) => {
   const {
     userName,
